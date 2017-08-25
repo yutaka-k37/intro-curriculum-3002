@@ -14,16 +14,16 @@ rl.on('line', (line) => {
         let value = map.get(prefecture);
         if (!value) {
             value = {
-                p10: 0,
-                p15: 0,
+                popu10: 0,
+                popu15: 0,
                 change: null
             };
         }
         if (year === '2010') {
-            value.p10 += parseInt(popu);
+            value.popu10 += parseInt(popu);
         }
         if (year === '2015') {
-            value.p15 += parseInt(popu);
+            value.popu15 += parseInt(popu);
         }
         map.set(prefecture, value);
     }
@@ -32,14 +32,14 @@ rl.resume();
 rl.on('close', () => {
     for (let pair of map) {
         const value = pair[1];
-        value.change = value.p15 / value.p10;
+        value.change = value.popu15 / value.popu10;
     }
     // TODO 減った割合のランキングにして順位も一緒に出力するようにしてください
-    const rankingArray = Array.from(map).sort((p1, p2) => {
-        return p2[1].change - p1[1].change;
+    const rankingArray = Array.from(map).sort((pair1, pair2) => {
+        return pair2[1].change - pair1[1].change;
     });
-    const rankingStrings = rankingArray.map((p) => {
-        return p[0] + ': ' + p[1].p10 + '=>' + p[1].p15 + ' 変化率:' + p[1].change;
+    const rankingStrings = rankingArray.map((pair) => {
+        return pair[0] + ': ' + pair[1].popu10 + '=>' + pair[1].popu15 + ' 変化率:' + pair[1].change;
     });
     console.log(rankingStrings);
 });
