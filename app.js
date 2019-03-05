@@ -20,10 +20,10 @@ rl.on('line', (line) => {
             };
         }
         if (year === '2010') {
-            value.popu10 += parseInt(popu);
+            value.popu10 = parseInt(popu);
         }
         if (year === '2015') {
-            value.popu15 += parseInt(popu);
+            value.popu15 = parseInt(popu);
         }
         prefectureDataMap.set(prefecture, value);
     }
