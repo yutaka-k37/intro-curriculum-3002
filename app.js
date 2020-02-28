@@ -1,4 +1,5 @@
 'use strict';
+// 試しにコメントを追加
 const fs = require('fs');
 const readline = require('readline');
 const rs = fs.createReadStream('./popu-pref.csv');
